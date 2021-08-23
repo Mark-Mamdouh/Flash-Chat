@@ -24,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         backgroundColor: Colors.red,
       ),
+      // loading animation
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -33,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Flexible(
+                // hero widget to show a nice animation
                 child: Hero(
                   tag: "logo",
                   child: Container(
@@ -44,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 48.0,
               ),
+              // email text field
               TextField(
                 style: TextStyle(color: Colors.white),
                 textAlign: TextAlign.center,
@@ -54,9 +57,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration:
                     kTextFieldDecoration.copyWith(hintText: "Enter your email"),
               ),
+              // some horizontal space
               SizedBox(
                 height: 8.0,
               ),
+              // password text field
               TextField(
                 style: TextStyle(color: Colors.white),
                 obscureText: true,
@@ -70,16 +75,19 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 24.0,
               ),
+              // login button
               RoundedButton(Colors.redAccent, 'Log In', () async {
                 setState(() {
                   showSpinner = true;
                 });
                 try {
+                  // tru to get the user
                   final user = await _auth.signInWithEmailAndPassword(
                       email: email, password: password);
                   if (user != null) {
                     Navigator.pushNamed(context, "/chat");
                   }
+                  // stop sppiner
                   setState(() {
                     showSpinner = false;
                   });
