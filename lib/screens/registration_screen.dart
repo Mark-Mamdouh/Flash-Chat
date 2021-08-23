@@ -62,7 +62,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 decoration:
                     kTextFieldDecoration.copyWith(hintText: "Enter your email"),
               ),
-              // some horizontal space
+              // some vertical space
               SizedBox(
                 height: 8.0,
               ),
