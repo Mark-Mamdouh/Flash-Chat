@@ -24,6 +24,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       appBar: AppBar(
         backgroundColor: Colors.red,
       ),
+      // loading animation
       body: ModalProgressHUD(
         // ModalProgressHUD show loading spinner while registering
         inAsyncCall: showSpinner,
@@ -36,6 +37,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               // flexible rise up all the widgets when the keyboard is shown
               // so that no widgets go under the keyboard
               Flexible(
+                // hero widget to show nice animation
                 child: Hero(
                   tag: "logo",
                   child: Container(
@@ -47,6 +49,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               SizedBox(
                 height: 48.0,
               ),
+              // email text fieled
               TextField(
                 style: TextStyle(color: Colors.white),
                 textAlign: TextAlign.center,
@@ -59,9 +62,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 decoration:
                     kTextFieldDecoration.copyWith(hintText: "Enter your email"),
               ),
+              // some horizontal space
               SizedBox(
                 height: 8.0,
               ),
+              // password text field
               TextField(
                 style: TextStyle(color: Colors.white),
                 // make password invisible
@@ -76,17 +81,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               SizedBox(
                 height: 24.0,
               ),
+              // register button
               RoundedButton(Colors.red, 'Register', () async {
                 setState(() {
                   // show spinner while loading
                   showSpinner = true;
                 });
                 try {
+                  // try to add the new user
                   final newUser = await _auth.createUserWithEmailAndPassword(
                       email: email, password: password);
                   if (newUser != null) {
                     Navigator.pushNamed(context, "/chat");
                   }
+                  // stop loading animation
                   setState(() {
                     showSpinner = false;
                   });
